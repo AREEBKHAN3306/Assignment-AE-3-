@@ -1,0 +1,62 @@
+# Load necessary libraries
+library(tidyverse)
+library(tidytext)
+library(textdata)
+library(ggplot2)
+library(dplyr)
+
+# Load the dataset (ensure the file is uploaded in Posit Cloud)
+df <- read.csv("nobel-prize-winners-1.csv", stringsAsFactors = FALSE)
+
+# Remove missing values and duplicates
+df_cleaned <- df %>%
+  filter(!is.na(motivation) & motivation != "") %>%  # Ensure valid motivation text
+  mutate(motivation = tolower(motivation)) %>%
+  distinct(name, motivation, .keep_all = TRUE)
+
+# Tokenize the text in the 'motivation' column (keeping motivation in the dataframe)
+df_tokens <- df_cleaned %>%
+  unnest_tokens(word, motivation, token = "words") %>%
+  anti_join(stop_words)  # Remove common stop words (e.g., "the", "and", "of")
+
+# Load Bing Sentiment Lexicon
+bing_lexicon <- get_sentiments("bing")
+
+# Perform sentiment analysis
+df_sentiment <- df_tokens %>%
+  inner_join(bing_lexicon, by = "word") %>%  # Match words to sentiment lexicon
+  group_by(name) %>%  # Group only by name (motivation is broken into words)
+  summarise(positive = sum(sentiment == "positive"), 
+            negative = sum(sentiment == "negative"), .groups = "drop") %>%
+  mutate(sentiment_score = positive - negative)
+
+# Display a preview of the sentiment scores
+head(df_sentiment)
+
+# Plot histogram of sentiment scores
+ggplot(df_sentiment, aes(x = sentiment_score)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of Sentiment Scores in Nobel Prize Motivations",
+       x = "Sentiment Score", y = "Frequency") +
+  theme_minimal()
+
+# Categorize sentiment (Positive, Neutral, Negative)
+df_sentiment <- df_sentiment %>%
+  mutate(SentimentCategory = case_when(
+    sentiment_score > 0 ~ "Positive",
+    sentiment_score < 0 ~ "Negative",
+    TRUE ~ "Neutral"
+  ))
+
+# Bar chart of sentiment category distribution
+ggplot(df_sentiment, aes(x = SentimentCategory, fill = SentimentCategory)) +
+  geom_bar() +
+  labs(title = "Sentiment Category Distribution in Nobel Prize Motivations",
+       x = "Sentiment Category", y = "Count") +
+  theme_minimal()
+
+# Display a sample of sentiment results
+df_sentiment %>%
+  select(name, sentiment_score, SentimentCategory) %>%
+  head(10) %>%
+  knitr::kable()
