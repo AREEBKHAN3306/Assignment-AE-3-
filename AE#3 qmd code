@@ -1,40 +1,37 @@
-# Load required libraries
-library(tidyverse)  # For data manipulation
-library(tidytext)   # For text processing
-library(textdata)   # Contains sentiment lexicons
-library(ggplot2)    # For visualizing sentiment distribution
-library(dplyr)      # Additional data wrangling functions
+library(tidyverse)  
+library(tidytext)   
+library(textdata)   
+library(ggplot2)   
+library(dplyr)      
 
-# Load the dataset (Make sure the file is uploaded to Posit Cloud)
+# Load the dataset
 nobel_data <- read.csv("nobel-prize-winners-1.csv", stringsAsFactors = FALSE)
 
-# Cleaning the dataset: Remove missing values, duplicates, and format text
+# Cleaning the dataset
 nobel_cleaned <- nobel_data %>%
-  filter(!is.na(motivation) & motivation != "") %>%  # Keep rows where "motivation" is not empty
-  mutate(motivation = tolower(motivation)) %>%  # Convert text to lowercase for consistency
-  distinct(name, motivation, .keep_all = TRUE)  # Remove duplicate motivations
+  filter(!is.na(motivation) & motivation != "") %>% 
+  mutate(motivation = tolower(motivation)) %>%  
+  distinct(name, motivation, .keep_all = TRUE)  
 
-# Tokenizing the "motivation" column to analyze words individually
 nobel_words <- nobel_cleaned %>%
   unnest_tokens(word, motivation, token = "words") %>%
-  anti_join(stop_words)  # Remove common words (like "the", "and", "of") that don't add meaning
+  anti_join(stop_words) 
 
-# Load Bing Sentiment Lexicon (Pre-built dictionary of positive & negative words)
+# Load Bing Sentiment Lexicon
 bing_sentiment <- get_sentiments("bing")
 
 # Matching words in the motivations with sentiment scores
 nobel_sentiment <- nobel_words %>%
-  inner_join(bing_sentiment, by = "word") %>%  # Find matching words in sentiment dictionary
-  group_by(name) %>%  # Group by Nobel Prize winner (since motivations are broken into words)
-  summarise(positive = sum(sentiment == "positive"),  # Count positive words
-            negative = sum(sentiment == "negative"),  # Count negative words
+  inner_join(bing_sentiment, by = "word") %>%  
+  group_by(name) %>% 
+  summarise(positive = sum(sentiment == "positive"),  
+            negative = sum(sentiment == "negative"),  
             .groups = "drop") %>%
-  mutate(sentiment_score = positive - negative)  # Calculate overall sentiment score
+  mutate(sentiment_score = positive - negative)  
 
-# Preview the sentiment scores assigned to some winners
 head(nobel_sentiment)
 
-# Visualizing sentiment score distribution (how positive/negative motivations tend to be)
+# Visualizing sentiment score distribution
 ggplot(nobel_sentiment, aes(x = sentiment_score)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
   labs(title = "Sentiment Scores in Nobel Prize Motivations",
@@ -58,7 +55,7 @@ ggplot(nobel_sentiment, aes(x = sentiment_category, fill = sentiment_category)) 
        y = "Number of Winners") +
   theme_minimal()
 
-# Display a small sample of sentiment results (who had positive, neutral, or negative motivations)
+# Display a small sample of sentiment results
 nobel_sentiment %>%
   select(name, sentiment_score, sentiment_category) %>%
   head(10) %>%
