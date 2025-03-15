@@ -1,0 +1,46 @@
+### Reflection  
+
+#### 1. What kind of data did we use, and what did we do with it?  
+For this assignment, we worked with the **Nobel Prize Winners dataset**, which includes information about laureates from 1901 to 2017. The dataset contains details like winners' names, birth and death locations, prize categories, the year they won, and a **"motivation"** column explaining why they received the award.  
+
+We focused on the motivation text because it gave us insight into the reasoning behind each prize. Our process included:  
+
+- **Cleaning the text** – removing missing values, converting it to lowercase, and eliminating duplicates.  
+- **Performing sentiment analysis** using the Bing Lexicon to classify motivations as positive, neutral, or negative based on sentiment scores.  
+- **Visualizing results** with histograms and bar charts to understand how sentiment varied across different prize categories.  
+
+This helped us explore trends in how different fields are recognized. For instance, Peace and Literature prizes often had more positive sentiment, while scientific fields like Medicine or Physics tended to be more neutral, likely due to their technical nature.  
+
+#### 2. What was our experience using R, and what challenges did we face?  
+Using **R** for this project was a learning experience—both rewarding and a bit frustrating at times. We ran into a few roadblocks, such as:  
+
+- **Trouble installing libraries** – Some required packages (like `tidytext` and `textdata`) had extra dependencies that didn’t install smoothly in **Posit Cloud**.  
+- **Tokenization issues** – When breaking the motivation text into individual words using `unnest_tokens()`, the original column sometimes disappeared, leading to errors.  
+- **Maintaining context** – We had to make sure the motivation text stayed linked to the right winner while also removing stop words to get more accurate sentiment results.  
+
+Despite these challenges, **R turned out to be a powerful tool** for text analysis. We gained hands-on experience in data cleaning, text processing, and visualization—all skills that will be useful for future projects.  
+
+#### 3. Will we use this software and process again?  
+Definitely! R and sentiment analysis have so many real-world applications. Some potential uses include:  
+
+- **Analyzing customer reviews** to see how people feel about a product or brand.  
+- **Tracking public opinion** in news articles, political speeches, or social media posts.  
+- **Studying research trends** by analyzing abstracts and keywords over time.  
+- **Exploring emotional themes** in book reviews, movie scripts, or song lyrics.  
+
+Now that we’ve learned how to clean and process text data, we can apply these skills to various fields—from business and politics to entertainment and academic research.  
+
+#### 4. Why did we choose sentiment analysis?  
+We went with **sentiment analysis** because it allowed us to **quantify the tone** of Nobel Prize motivations—helping us see whether they were generally positive, neutral, or negative.  
+
+Other techniques, like **topic modeling or clustering**, focus more on grouping words by similarity, but sentiment analysis directly measures **emotional tone**, which made it the best fit for our dataset. Since Nobel Prize motivations describe major achievements and contributions, they often evoke strong emotions—whether positive or serious.  
+
+For example:  
+- **Peace and Literature prizes** tend to have more positive sentiment because they often recognize humanitarian efforts.  
+- **Science-related prizes** (Physics, Chemistry, Medicine) use more neutral or technical language, which doesn’t always carry strong emotion.  
+
+By analyzing sentiment, we uncovered interesting patterns in **how different Nobel Prize categories are perceived over time**. It was a fascinating way to explore how groundbreaking achievements are acknowledged in different fields.  
+
+---
+
+Overall, this assignment was a great mix of **data analysis, problem-solving, and storytelling**. It showed us how powerful text data can be and gave us useful skills we can apply in many different areas.
