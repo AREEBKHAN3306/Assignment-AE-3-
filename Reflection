@@ -1,46 +1,19 @@
-### Reflection  
+Reflections——————————————————————–
 
-#### 1. What kind of data did we use, and what did we do with it?  
-For this assignment, we worked with the **Nobel Prize Winners dataset**, which includes information about laureates from 1901 to 2017. The dataset contains details like winners' names, birth and death locations, prize categories, the year they won, and a **"motivation"** column explaining why they received the award.  
+Massey's Reflection - 
 
-We focused on the motivation text because it gave us insight into the reasoning behind each prize. Our process included:  
+1.
 
-- **Cleaning the text** – removing missing values, converting it to lowercase, and eliminating duplicates.  
-- **Performing sentiment analysis** using the Bing Lexicon to classify motivations as positive, neutral, or negative based on sentiment scores.  
-- **Visualizing results** with histograms and bar charts to understand how sentiment varied across different prize categories.  
+For this assignment, we had five different text analysis techniques to pick from, and I chose sentiment analysis because, for me, it made the most sense. It seemed like the easiest one to wrap my head around, and it actually fit well with the Nobel Prize dataset. The motivations are either positive or negative from my point of view, describing people’s accomplishments, so figuring out if they sounded more "positive" or "negative" felt fairly simple. As for the activities, I just followed what the assignment asked. First we did data cleaning, which involved removing missing values, duplicate entries, and unnecessary words. Then came text processing, where we broke down the motivation texts into individual words and filtered out common stop words. After that, we ran sentiment analysis using the Bing lexicon to classify words as either positive or negative and calculated sentiment scores for each laureate. Last, we did data visualization, using a histogram to display sentiment score distribution and a bar chart to categorize winners into positive, neutral, or negative sentiment groups.
 
-This helped us explore trends in how different fields are recognized. For instance, Peace and Literature prizes often had more positive sentiment, while scientific fields like Medicine or Physics tended to be more neutral, likely due to their technical nature.  
+2.
 
-#### 2. What was our experience using R, and what challenges did we face?  
-Using **R** for this project was a learning experience—both rewarding and a bit frustrating at times. We ran into a few roadblocks, such as:  
+I don’t have much experience with Python at all, so given the options, I preferred using R. When talking to Areeb, he mentioned that he tried using Python but kept running into issues, so we just decided it would be easier to stick with R for this assignment. I wouldn’t say I ran into any major issues with the programming itself. The tips provided on the assignment page were pretty helpful, and whenever I got confused, I watched a couple of short YouTube videos to help me understand things better.
 
-- **Trouble installing libraries** – Some required packages (like `tidytext` and `textdata`) had extra dependencies that didn’t install smoothly in **Posit Cloud**.  
-- **Tokenization issues** – When breaking the motivation text into individual words using `unnest_tokens()`, the original column sometimes disappeared, leading to errors.  
-- **Maintaining context** – We had to make sure the motivation text stayed linked to the right winner while also removing stop words to get more accurate sentiment results.  
+3.
 
-Despite these challenges, **R turned out to be a powerful tool** for text analysis. We gained hands-on experience in data cleaning, text processing, and visualization—all skills that will be useful for future projects.  
+I’m not really sure if I’ll use this software or process again in the future, but I wouldn’t be against it. My experience with R has been pretty good so far, I only started using it last semester for a course, and now again this semester, but I’d say I like it more than other languages like Python or C#. It feels more straightforward for handling data and making visualizations, which is nice. That said, I don’t have any specific projects in mind where I’d definitely use it, but if I ever needed to analyze text or work with large datasets, I could see R being useful. Maybe if I had to do something with survey responses or social media data, I’d consider using it again.
 
-#### 3. Will we use this software and process again?  
-Definitely! R and sentiment analysis have so many real-world applications. Some potential uses include:  
+4.
 
-- **Analyzing customer reviews** to see how people feel about a product or brand.  
-- **Tracking public opinion** in news articles, political speeches, or social media posts.  
-- **Studying research trends** by analyzing abstracts and keywords over time.  
-- **Exploring emotional themes** in book reviews, movie scripts, or song lyrics.  
-
-Now that we’ve learned how to clean and process text data, we can apply these skills to various fields—from business and politics to entertainment and academic research.  
-
-#### 4. Why did we choose sentiment analysis?  
-We went with **sentiment analysis** because it allowed us to **quantify the tone** of Nobel Prize motivations—helping us see whether they were generally positive, neutral, or negative.  
-
-Other techniques, like **topic modeling or clustering**, focus more on grouping words by similarity, but sentiment analysis directly measures **emotional tone**, which made it the best fit for our dataset. Since Nobel Prize motivations describe major achievements and contributions, they often evoke strong emotions—whether positive or serious.  
-
-For example:  
-- **Peace and Literature prizes** tend to have more positive sentiment because they often recognize humanitarian efforts.  
-- **Science-related prizes** (Physics, Chemistry, Medicine) use more neutral or technical language, which doesn’t always carry strong emotion.  
-
-By analyzing sentiment, we uncovered interesting patterns in **how different Nobel Prize categories are perceived over time**. It was a fascinating way to explore how groundbreaking achievements are acknowledged in different fields.  
-
----
-
-Overall, this assignment was a great mix of **data analysis, problem-solving, and storytelling**. It showed us how powerful text data can be and gave us useful skills we can apply in many different areas.
+We chose sentiment analysis as our data analysis technique because it seemed like the most straightforward and practical option for the Nobel Prize dataset. The motivations for winning a Nobel Prize usually contain descriptive language that can be classified as positive or negative, making sentiment analysis work well. Out of the five techniques we could choose from, sentiment analysis felt the easiest to understand and implement to me, when I asked Areeb about it he didn't really say anything against it so I just proceeded. The results it showed allowed us to see whether Nobel Prize motivations tend to be framed as positive, neutral, or negative. It was the best choice for us because it made sense for the data and was relatively simple to execute while still producing interesting insights.
