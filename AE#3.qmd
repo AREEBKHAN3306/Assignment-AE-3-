@@ -1,3 +1,17 @@
+---
+title: "AE3_Sentiment_Analysis"
+format: html
+editor: visual
+---
+
+Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org.
+
+Running Code
+
+{r}
+
 library(tidyverse)  
 library(tidytext)   
 library(textdata)   
@@ -60,3 +74,24 @@ nobel_sentiment %>%
   select(name, sentiment_score, sentiment_category) %>%
   head(10) %>%
   knitr::kable()
+
+
+Reflections——————————————————————–
+
+Massey's Reflection - 
+
+1.
+
+For this assignment, we had five different text analysis techniques to pick from, and I chose sentiment analysis because, for me, it made the most sense. It seemed like the easiest one to wrap my head around, and it actually fit well with the Nobel Prize dataset. The motivations are either positive or negative from my point of view, describing people’s accomplishments, so figuring out if they sounded more "positive" or "negative" felt fairly simple. As for the activities, I just followed what the assignment asked. First we did data cleaning, which involved removing missing values, duplicate entries, and unnecessary words. Then came text processing, where we broke down the motivation texts into individual words and filtered out common stop words. After that, we ran sentiment analysis using the Bing lexicon to classify words as either positive or negative and calculated sentiment scores for each laureate. Last, we did data visualization, using a histogram to display sentiment score distribution and a bar chart to categorize winners into positive, neutral, or negative sentiment groups.
+
+2.
+
+I don’t have much experience with Python at all, so given the options, I preferred using R. When talking to Areeb, he mentioned that he tried using Python but kept running into issues, so we just decided it would be easier to stick with R for this assignment. I wouldn’t say I ran into any major issues with the programming itself. The tips provided on the assignment page were pretty helpful, and whenever I got confused, I watched a couple of short YouTube videos to help me understand things better.
+
+3.
+
+I’m not really sure if I’ll use this software or process again in the future, but I wouldn’t be against it. My experience with R has been pretty good so far, I only started using it last semester for a course, and now again this semester, but I’d say I like it more than other languages like Python or C#. It feels more straightforward for handling data and making visualizations, which is nice. That said, I don’t have any specific projects in mind where I’d definitely use it, but if I ever needed to analyze text or work with large datasets, I could see R being useful. Maybe if I had to do something with survey responses or social media data, I’d consider using it again.
+
+4.
+
+We chose sentiment analysis as our data analysis technique because it seemed like the most straightforward and practical option for the Nobel Prize dataset. The motivations for winning a Nobel Prize usually contain descriptive language that can be classified as positive or negative, making sentiment analysis work well. Out of the five techniques we could choose from, sentiment analysis felt the easiest to understand and implement to me, when I asked Areeb about it he didn't really say anything against it so I just proceeded. The results it showed allowed us to see whether Nobel Prize motivations tend to be framed as positive, neutral, or negative. It was the best choice for us because it made sense for the data and was relatively simple to execute while still producing interesting insights.
