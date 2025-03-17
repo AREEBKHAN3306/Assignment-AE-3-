@@ -20,17 +20,17 @@ Quarto enables you to weave together content and executable code into a finished
 ## Running Code
 
 ```{r}
-
+#importing the libraries
 library(tidyverse)  
 library(tidytext)   
 library(textdata)   
 library(ggplot2)   
 library(dplyr)      
 
-# Load the dataset
+# Loading the dataset
 nobel_data <- read.csv("nobel-prize-winners-1.csv", stringsAsFactors = FALSE)
 
-# Cleaning the dataset
+# Cleaning the dataset So we can use it Data Analysis & Visualization
 nobel_cleaned <- nobel_data %>%
   filter(!is.na(motivation) & motivation != "") %>% 
   mutate(motivation = tolower(motivation)) %>%  
@@ -54,7 +54,7 @@ nobel_sentiment <- nobel_words %>%
 
 head(nobel_sentiment)
 
-# Visualizing sentiment score distribution
+# Visualizing the sentiment score distribution
 ggplot(nobel_sentiment, aes(x = sentiment_score)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
   labs(title = "Sentiment Scores in Nobel Prize Motivations",
@@ -62,7 +62,7 @@ ggplot(nobel_sentiment, aes(x = sentiment_score)) +
        y = "Count of Winners") +
   theme_minimal()
 
-# Categorizing sentiment into three groups: Positive, Neutral, Negative
+# Categorizing the sentiment into three groups: Positive, Neutral, Negative
 nobel_sentiment <- nobel_sentiment %>%
   mutate(sentiment_category = case_when(
     sentiment_score > 0 ~ "Positive",
@@ -70,7 +70,8 @@ nobel_sentiment <- nobel_sentiment %>%
     TRUE ~ "Neutral"
   ))
 
-# Bar chart to show the overall distribution of sentiment categories
+# Generating a Bar chart to show the overall distribution of sentiment categories
+
 ggplot(nobel_sentiment, aes(x = sentiment_category, fill = sentiment_category)) +
   geom_bar() +
   labs(title = "Sentiment Categories in Nobel Prize Motivations",
@@ -78,7 +79,8 @@ ggplot(nobel_sentiment, aes(x = sentiment_category, fill = sentiment_category)) 
        y = "Number of Winners") +
   theme_minimal()
 
-# Display a small sample of sentiment results
+# Displaying a small sample of sentiment results
+
 nobel_sentiment %>%
   select(name, sentiment_score, sentiment_category) %>%
   head(10) %>%
@@ -98,23 +100,20 @@ Reflection(Areeb Khan):
 
 3.  Yes, I will definitely use this software and the process again in the future. Although it would require a little more practice and it would take me some time to get used to it, I will definitely be using it. I could use this software and the process for my data analysis related tasks. I am interested in pursuing my career in Business Analytics, therefore this could be really helpful for me. Since in Business Analytics I can apply my knowledge of sentiment analysis to analyze the reviews of the customers of a specific product. Similarly, text analysis techniques could also be used by the businesses across the different social media platforms, to understand the public opinions about their business, which could be used to make crucial business decisions. Therefore, I will be willingly using this software and the process again in the future.
 
-4.  I chose the Sentiment Analysis Technique for the data analysis. The reason I chose this technique was that in the dataset, I saw that there was a column named ‘motivation’ and that column had an explanation of why the person won the nobel prize, so I knew that using the Sentiment Analysis Technique, I will be able to easily find out the positive, neutral, or negative sentiments using the explanation available in the ‘motivation column’. Also after some research I came to know that out of burst detection, sentiment analysis, clustering, network analysis, and topic modeling,  the visual representation of the sentiment analysis is the easiest to understand, as the sentiment analysis can be visualized using the bar graph. Therefore it is easier to interpret and understand the trends in the data. So keeping all that in mind, I decided to choose Sentiment Analysis Technique for the data analysis.
+4.  I chose the Sentiment Analysis Technique for the data analysis. The reason I chose this technique was that in the dataset, I saw that there was a column named ‘motivation’ and that column had an explanation of why the person won the nobel prize, so I knew that using the Sentiment Analysis Technique, I will be able to easily find out the positive, neutral, or negative sentiments using the explanation available in the ‘motivation column’. Also after some research I came to know that out of burst detection, sentiment analysis, clustering, network analysis, and topic modeling, the visual representation of the sentiment analysis is the easiest to understand, as the sentiment analysis can be visualized using the bar graph. Therefore it is easier to interpret and understand the trends in the data. So keeping all that in mind, I decided to choose Sentiment Analysis Technique for the data analysis.
 
 Massey's Reflection -\
 
-1\.
+1.
 
 For this assignment, we had five different text analysis techniques to pick from, and I chose sentiment analysis because, for me, it made the most sense. It seemed like the easiest one to wrap my head around, and it actually fit well with the Nobel Prize dataset. The motivations are either positive or negative from my point of view, describing people’s accomplishments, so figuring out if they sounded more "positive" or "negative" felt fairly simple. As for the activities, I just followed what the assignment asked. First we did data cleaning, which involved removing missing values, duplicate entries, and unnecessary words. Then came text processing, where we broke down the motivation texts into individual words and filtered out common stop words. After that, we ran sentiment analysis using the Bing lexicon to classify words as either positive or negative and calculated sentiment scores for each laureate. Last, we did data visualization, using a histogram to display sentiment score distribution and a bar chart to categorize winners into positive, neutral, or negative sentiment groups.
 
-2\.
+2.
 
 I don’t have much experience with Python at all, so given the options, I preferred using R. When talking to Areeb, he mentioned that he tried using Python but kept running into issues, so we just decided it would be easier to stick with R for this assignment. I wouldn’t say I ran into any major issues with the programming itself. The tips provided on the assignment page were pretty helpful, and whenever I got confused, I watched a couple of short YouTube videos to help me understand things better.
 
-3\.
-
+3.
 I’m not really sure if I’ll use this software or process again in the future, but I wouldn’t be against it. My experience with R has been pretty good so far, I only started using it last semester for a course, and now again this semester, but I’d say I like it more than other languages like Python or C#. It feels more straightforward for handling data and making visualizations, which is nice. That said, I don’t have any specific projects in mind where I’d definitely use it, but if I ever needed to analyze text or work with large datasets, I could see R being useful. Maybe if I had to do something with survey responses or social media data, I’d consider using it again.
 
-4\.
->>>>>>> Final AE3 project submission
-
+4.
 We chose sentiment analysis as our data analysis technique because it seemed like the most straightforward and practical option for the Nobel Prize dataset. The motivations for winning a Nobel Prize usually contain descriptive language that can be classified as positive or negative, making sentiment analysis work well. Out of the five techniques we could choose from, sentiment analysis felt the easiest to understand and implement to me, when I asked Areeb about it he didn't really say anything against it so I just proceeded. The results it showed allowed us to see whether Nobel Prize motivations tend to be framed as positive, neutral, or negative. It was the best choice for us because it made sense for the data and was relatively simple to execute while still producing interesting insights.
